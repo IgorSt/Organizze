@@ -12,7 +12,7 @@
         <activity android:name=".activity.Activity_cadastro"></activity>
         <activity android:name=".activity.Activity_login" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:theme="@style/Theme.Intro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

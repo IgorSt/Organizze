@@ -1,4 +1,4 @@
-package com.igorsantos.organizze;
+package com.igorsantos.organizze.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.heinrichreimersoftware.materialintro.app.IntroActivity;
 import com.heinrichreimersoftware.materialintro.slide.FragmentSlide;
+import com.igorsantos.organizze.R;
 import com.igorsantos.organizze.activity.Activity_cadastro;
 import com.igorsantos.organizze.activity.Activity_login;
 
