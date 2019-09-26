@@ -2,7 +2,7 @@ package com.igorsantos.organizze.activity.config;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ConfigutacaoFirebase {
+public class ConfiguracaoFirebase {
 
     private static FirebaseAuth autenticacaoFirebase;
 

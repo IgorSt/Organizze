@@ -1,8 +1,9 @@
-package com.igorsantos.organizze.activity;
+package com.igorsantos.organizze.activity.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.igorsantos.organizze.R;
-import com.igorsantos.organizze.activity.config.ConfigutacaoFirebase;
+import com.igorsantos.organizze.activity.config.ConfiguracaoFirebase;
 import com.igorsantos.organizze.activity.model.Usuario;
 
 public class Activity_cadastro extends AppCompatActivity {
@@ -76,11 +77,12 @@ public class Activity_cadastro extends AppCompatActivity {
 
     public void cadastrarUsuario(){
 
-        autenticacaoFireBase = ConfigutacaoFirebase.getAutenticacaoFirebase();
+        autenticacaoFireBase = ConfiguracaoFirebase.getAutenticacaoFirebase();
         autenticacaoFireBase.createUserWithEmailAndPassword(usuario.getEmail(), usuario.getSenha()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    abrirTelaPrincipal();
                     Toast.makeText(Activity_cadastro.this, "Sucesso ao cadastrar usuário", Toast.LENGTH_SHORT).show();
                 }else{
                     String excecao = "";
@@ -100,5 +102,10 @@ public class Activity_cadastro extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void abrirTelaPrincipal(){
+        Intent intent = new Intent(getApplicationContext(), Activity_principal.class);
+        startActivity(intent);
     }
 }

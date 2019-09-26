@@ -9,10 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.Activity_cadastro"></activity>
-        <activity android:name=".activity.Activity_login" />
+        <activity android:name=".activity.activity.Activity_despesas"
+            android:theme="@style/temaDespesas"/>
+        <activity android:name=".activity.activity.Activity_receitas"
+            android:theme="@style/temaReceitas"/>
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.activity.Activity_principal"
+            android:label="@string/title_activity_principal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.activity.Activity_cadastro" />
+        <activity android:name=".activity.activity.Activity_login" />
+        <activity
+            android:name=".activity.activity.MainActivity"
             android:theme="@style/Theme.Intro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
