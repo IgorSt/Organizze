@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.igorsantos.organizze.R;
 import com.igorsantos.organizze.activity.config.ConfiguracaoFirebase;
+import com.igorsantos.organizze.activity.helper.Base64Custom;
 import com.igorsantos.organizze.activity.model.Usuario;
 
 public class Activity_cadastro extends AppCompatActivity {
@@ -82,6 +84,11 @@ public class Activity_cadastro extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
+                    String idUsuario = Base64Custom.codificarBase64(usuario.getEmail());
+                    usuario.setIdUsuario(idUsuario);
+                    usuario.salvaNoFirebase();
+
                     abrirTelaPrincipal();
                     Toast.makeText(Activity_cadastro.this, "Sucesso ao cadastrar usuário", Toast.LENGTH_SHORT).show();
                 }else{
