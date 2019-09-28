@@ -38,7 +38,7 @@
             android:onClick="adicionarDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
+            app:srcCompat="@drawable/ic_add"
             app:fab_colorNormal="@color/colorPrimaryDespesa"
             app:fab_label="Despesa"
             app:fab_size="mini"/>
@@ -48,7 +48,7 @@
             android:onClick="adicionarReceita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
+            app:srcCompat="@drawable/ic_add"
             app:fab_colorNormal="@color/colorPrimaryReceita"
             app:fab_colorPressed="@color/colorPrimaryDarkReceita"
             app:fab_label="Receita"

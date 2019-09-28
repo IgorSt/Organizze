@@ -10,10 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.CalendarView;
 
 import com.igorsantos.organizze.R;
 
 public class Activity_principal extends AppCompatActivity {
+
+    private CalendarView calendarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,9 @@ public class Activity_principal extends AppCompatActivity {
         setContentView(R.layout.activity_principal);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        calendarView = findViewById(R.id.calendarView);
+        configuraCalendarView();
 
         /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +45,10 @@ public class Activity_principal extends AppCompatActivity {
     public void adicionarDespesa(View view){
         Intent intent = new Intent(getApplicationContext(), Activity_despesas.class);
         startActivity(intent);
+    }
+
+    public void configuraCalendarView(){
+        CharSequence meses[] = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",  "Julho", "Agosto", "Setembro", "Outubro", "Novembri", "Dezembro"};
     }
 
 }
