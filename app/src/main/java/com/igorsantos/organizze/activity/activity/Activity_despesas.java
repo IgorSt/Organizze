@@ -20,6 +20,7 @@ import com.igorsantos.organizze.activity.helper.Base64Custom;
 import com.igorsantos.organizze.activity.helper.DateUtil;
 import com.igorsantos.organizze.activity.model.Movimentacao;
 import com.igorsantos.organizze.activity.model.Usuario;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 public class Activity_despesas extends AppCompatActivity {
 
@@ -47,6 +48,7 @@ public class Activity_despesas extends AppCompatActivity {
         campoData.setText(DateUtil.dataAtual());
 
         recuperarDespesaTotal();
+
     }
 
     public void salvarDespesa(View view){
@@ -67,6 +69,9 @@ public class Activity_despesas extends AppCompatActivity {
             atualizarDespesa(despesaAtualizada);
 
             movimentacao.salvar(data);
+
+            Toast.makeText(getApplicationContext(), "Despesa salva com sucesso!", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 

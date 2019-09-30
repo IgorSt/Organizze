@@ -36,24 +36,24 @@
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_despesa"
-            android:onClick="adicionarDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_add"
+            android:onClick="adicionarDespesa"
+            android:src="@drawable/fab_add"
             app:fab_colorNormal="@color/colorPrimaryDespesa"
             app:fab_label="Despesa"
-            app:fab_size="mini"/>
+            app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_receita"
-            android:onClick="adicionarReceita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_add"
+            android:onClick="adicionarReceita"
             app:fab_colorNormal="@color/colorPrimaryReceita"
             app:fab_colorPressed="@color/colorPrimaryDarkReceita"
             app:fab_label="Receita"
-            app:fab_size="mini"/>
+            app:fab_size="mini"
+            android:src="@drawable/fab_add" />
 
     </com.github.clans.fab.FloatingActionMenu>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

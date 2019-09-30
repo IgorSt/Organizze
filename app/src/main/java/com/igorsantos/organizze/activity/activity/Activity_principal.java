@@ -9,12 +9,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -181,9 +183,11 @@ public class Activity_principal extends AppCompatActivity {
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
-                mesAnoSelecionado = date.getMonth() + "" + date.getYear();
+                String mesSelecionado = String.format("%02d", date.getMonth());
+                mesAnoSelecionado = mesSelecionado + "" + date.getYear();
 
                 referenciaDatabaseMovimentacao.removeEventListener(valueEventListenerMovimentacoes);
+
                 recuperarMovimentacoes();
             }
         });

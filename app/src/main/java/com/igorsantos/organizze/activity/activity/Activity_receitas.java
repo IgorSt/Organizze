@@ -67,6 +67,9 @@ public class Activity_receitas extends AppCompatActivity {
             atualizarReceita(receitaAtualizada);
 
             movimentacao.salvar(data);
+
+            Toast.makeText(getApplicationContext(), "Receita salva com sucesso!", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 

@@ -3,6 +3,7 @@ package com.igorsantos.organizze.activity.model;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 import com.igorsantos.organizze.activity.config.ConfiguracaoFirebase;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 public class Usuario {
 
@@ -21,6 +22,7 @@ public class Usuario {
         referenciaFirebase.child("usuario")
                 .child(this.idUsuario)
                 .setValue(this);
+
     }
 
     public Double getReceitaTotal() {
