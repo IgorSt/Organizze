@@ -17,7 +17,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textViewSaudacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Carregando..."
@@ -26,7 +26,7 @@
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/textViewSaldo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="R$ 0.00"
@@ -45,14 +45,17 @@
 
     </LinearLayout>
 
-    <com.applandeo.materialcalendarview.CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:headerColor="@color/colorPrimaryDark"
-        android:gravity="center"/>
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="#00F"
+        app:mcv_tileSize="50dp"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerMovimentos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF" />

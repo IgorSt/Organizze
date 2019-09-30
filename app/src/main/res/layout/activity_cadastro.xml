@@ -32,7 +32,6 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="8dp"
-        android:drawableStart="@drawable/ic_email"
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Email"
@@ -40,7 +39,8 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextSenha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNome" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNome"
+        android:drawableLeft="@drawable/ic_email" />
 
     <EditText
         android:id="@+id/editTextSenha"
@@ -50,7 +50,6 @@
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:drawableStart="@drawable/ic_lock"
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Senha"
@@ -58,7 +57,8 @@
         app:layout_constraintBottom_toTopOf="@+id/buttonCadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        android:drawableLeft="@drawable/ic_lock" />
 
     <EditText
         android:id="@+id/editTextNome"
@@ -69,7 +69,6 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="8dp"
-        android:drawableStart="@drawable/ic_person"
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="Nome"
@@ -77,7 +76,8 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        android:drawableLeft="@drawable/ic_person" />
 
     <TextView
         android:id="@+id/textView7"

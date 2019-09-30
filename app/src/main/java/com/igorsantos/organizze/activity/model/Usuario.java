@@ -10,8 +10,8 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private Double receitaTotal = 0.00;
-    private Double despesaTotal = 0.00;
+    private Double receitaTotal = 0.0;
+    private Double despesaTotal = 0.0;
 
     public Usuario() {
     }
