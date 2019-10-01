@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/quatro" />
+        app:srcCompat="@drawable/intro_4" />
 
     <TextView
         android:id="@+id/textView"

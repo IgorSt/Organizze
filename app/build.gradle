@@ -7,6 +7,7 @@ android {
         applicationId "com.igorsantos.organizze"
         minSdkVersion 16
         targetSdkVersion 29
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -39,5 +40,9 @@ dependencies {
     implementation 'com.github.clans:fab:1.6.4'
 
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
+
+    implementation 'com.google.firebase:firebase-ads:18.2.0'
+
+    implementation 'com.android.support:multidex:1.0.3'
 }
 apply plugin: 'com.google.gms.google-services'
