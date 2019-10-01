@@ -1,11 +1,14 @@
 package com.igorsantos.organizze.activity.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,6 +62,7 @@ public class Activity_principal extends AppCompatActivity {
     private AdapterMovimentacao adapterMovimentacao;
 
     private List<Movimentacao> listaMovimentacoes = new ArrayList<>();
+    private Movimentacao movimentacao;
 
     private String mesAnoSelecionado;
 
@@ -88,6 +93,86 @@ public class Activity_principal extends AppCompatActivity {
 
     }
 
+    public void swipe(){
+        ItemTouchHelper.Callback itemTouch = new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                int dragFlags = ItemTouchHelper.ACTION_STATE_IDLE;
+                int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+
+                return makeMovementFlags(dragFlags, swipeFlags);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                excluirMovimentacao(viewHolder);
+            }
+        };
+
+        new ItemTouchHelper(itemTouch).attachToRecyclerView(recyclerView);
+    }
+
+    public void excluirMovimentacao(final RecyclerView.ViewHolder viewHolder){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        //CONFIGURA O ALERTDIALOG
+        alertDialog.setTitle("Excluir Movimentação da Conta");
+        alertDialog.setMessage("Tem certeza que deseja excluir a movimentação da sua conta?");
+        alertDialog.setCancelable(false);
+
+        alertDialog.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int position = viewHolder.getAdapterPosition();
+                movimentacao = listaMovimentacoes.get(position);
+
+                String emailUsuario = autenticacaoFirebase.getCurrentUser().getEmail();
+                String idUsuario = Base64Custom.codificarBase64(emailUsuario);
+                referenciaDatabaseMovimentacao = referenciaDatabase.child("movimentacao")
+                                                                    .child(idUsuario)
+                                                                    .child(mesAnoSelecionado);
+
+                referenciaDatabaseMovimentacao.child(movimentacao.getId()).removeValue();
+                adapterMovimentacao.notifyItemRemoved(position);
+
+                Toast.makeText(getApplicationContext(), "Item apagado!", Toast.LENGTH_SHORT).show();
+
+                atualizarSaldo();
+            }
+        });
+        alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(Activity_principal.this, "Cancelado", Toast.LENGTH_SHORT).show();
+                adapterMovimentacao.notifyDataSetChanged();
+            }
+        });
+
+        AlertDialog alertDialog1 = alertDialog.create();
+        alertDialog1.show();
+    }
+
+    public void atualizarSaldo(){
+        String emailUsuario = autenticacaoFirebase.getCurrentUser().getEmail();
+        String idUsuario = Base64Custom.codificarBase64(emailUsuario);
+        referenciaUsuario = referenciaDatabase.child("usuario").child(idUsuario);
+
+        if(movimentacao.getTipo().equals("r")){
+            receitaTotal = receitaTotal - movimentacao.getValor();
+
+            referenciaUsuario.child("receitaTotal").setValue(receitaTotal);
+        }if(movimentacao.getTipo().equals("d")){
+            receitaTotal = receitaTotal - movimentacao.getValor();
+
+            referenciaUsuario.child("despesaTotal").setValue(receitaTotal);
+        }
+    }
+
     private void recuperarMovimentacoes(){
         String emailUsuario = autenticacaoFirebase.getCurrentUser().getEmail();
         String idUsuario = Base64Custom.codificarBase64(emailUsuario);
@@ -103,6 +188,7 @@ public class Activity_principal extends AppCompatActivity {
 
                 for(DataSnapshot dados: dataSnapshot.getChildren()){
                     Movimentacao movimentacao = dados.getValue(Movimentacao.class);
+                    movimentacao.setId(dados.getKey());
                     listaMovimentacoes.add(movimentacao);
                 }
 
@@ -200,6 +286,8 @@ public class Activity_principal extends AppCompatActivity {
 
         recuperarResumo();
         recuperarMovimentacoes();
+
+        swipe();
     }
 
     @Override

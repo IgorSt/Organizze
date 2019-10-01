@@ -13,6 +13,7 @@ public class Movimentacao {
     private String descricao;
     private String tipo;
     private Double valor;
+    private String id;
 
     public Movimentacao() {
     }
@@ -30,6 +31,14 @@ public class Movimentacao {
                 .child(mesAno)
                 .push()
                 .setValue(this);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getData() {
